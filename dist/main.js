@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\ndocument.addEventListener('DOMContentLoaded', () => {\n\n    let canvas = document.getElementById('screen');\n    let screen = canvas.getContext('2d');\n\n    screen.fillRect(10, 10, 50, 50);\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\ndocument.addEventListener('DOMContentLoaded', () => {\n\n    let canvas = document.getElementById('screen');\n    let screen = canvas.getContext('2d');\n\n    \n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
