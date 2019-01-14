@@ -1,5 +1,6 @@
 import Ball from './modules/ball';
 import Paddle from './modules/paddle';
+import * as Util from './utility/util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,11 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (gameStart) {
 
-            if (ball.x + (ball.dx * ball.speed) > canvas.width - ball.radius || ball.x + (ball.dx * ball.speed) < ball.radius) {
-                ball.dx = -ball.dx;
-            }
+            if (Util.collisionWithWall(ball, canvas)) ball.dx = -ball.dx;
 
-            if (ball.y + (ball.dy * ball.speed) < ball.radius) {
+            if (Util.collisionWithTop(ball)) {
                 ball.dy = -ball.dy;
             } else if (ball.y + (ball.dy * ball.speed) > paddle.y - ball.radius && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
                 ball.speed += 0.2;
