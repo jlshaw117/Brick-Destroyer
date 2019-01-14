@@ -7,6 +7,7 @@ class Ball {
         this.dy = 0;
         this.speed = 2;
         this.radius = radius;
+    
     }
 
     draw(screen) {
@@ -18,9 +19,39 @@ class Ball {
     }
 
     collisionWithWall(canvas) {
-        if (this.x + (this.dx * this.speed) > canvas.width - this.radius || this.x + (this.dx * this.speed) < this.radius) {
+        if (this.x + (this.dx * this.speed) > canvas.width - this.radius || 
+            this.x + (this.dx * this.speed) < this.radius) {
+
             this.dx = -this.dx;
         } 
+    }
+
+    collisionWithBrick(brick) {
+        let left = brick.x;
+        let right = brick.x + brick.edge;
+        let bottom = brick.y + 100;
+        let top = brick.y;
+
+        this.bottom = this.y + this.radius;
+        this.top = this.y - this.radius;
+        this.left = this.x - this.radius;
+        this.right = this.x + this.radius;
+
+        if (this.right + (this.speed * this.dx) > left && 
+            this.left + (this.speed * this.dx) < right && 
+            this.bottom + (this.speed * this.dy) > top && 
+            this.top + (this.speed * this.dy) < bottom) {
+
+            if (this.right > left && this.left < right && this.top >= bottom) {
+                this.dy = -this.dy;
+            } else if (this.right > left && this.left < right && this.bottom >= top) {
+                this.dy = -this.dy;
+            } else {
+                this.dx = -this.dx;
+            }
+        }
+
+
     }
 
     collisionWithTop() {
@@ -30,7 +61,10 @@ class Ball {
     }
 
     collisionWithPaddle(paddle) {
-        if (this.y + (this.dy * this.speed) > paddle.y - this.radius && this.x > paddle.x && this.x < paddle.x + paddle.width) {
+        if (this.y + (this.dy * this.speed) > paddle.y - this.radius && 
+            this.x > paddle.x && 
+            this.x < paddle.x + paddle.width) {
+
             this.speed += 0.2;
             this.dy = -this.dy;
             this.calculateTraj(paddle);
