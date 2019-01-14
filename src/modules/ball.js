@@ -10,9 +10,11 @@ class Ball {
     }
 
     draw(screen) {
+        screen.beginPath();
         screen.fillStyle = 'black';
         screen.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         screen.fill();
+        screen.closePath();
     }
 
     collisionWithWall(canvas) {
