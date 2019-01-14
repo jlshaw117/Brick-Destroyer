@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
         canvas.width = canvas.width;
         ball.draw(screen);
-        // screen.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-        // screen.fill();
         screen.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
         if (gameStart) {
@@ -49,11 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (ball.x + (ball.dx * ball.speed) > canvas.width - ball.radius || ball.x + (ball.dx * ball.speed) < ball.radius) {
                 ball.dx = -ball.dx;
             }
-    
-            // if (y + (ball.dy * ball.speed) < ballRadius) {
-            //     ball.dy = -ball.dy;
-            // } 
-    
+
             if (ball.y + (ball.dy * ball.speed) < ball.radius) {
                 ball.dy = -ball.dy;
             } else if (ball.y + (ball.dy * ball.speed) > paddle.y - ball.radius && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
@@ -63,35 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (ball.y + (ball.dy * ball.speed)> canvas.height - ball.radius) {
                 alert("GAME OVER");
                 document.location.reload();
-                // clearInterval(interval); // Needed for Chrome to end game
             }
     
             ball.x += ball.dx * ball.speed;
             ball.y += ball.dy * ball.speed;
         }
 
-        
-
-        // ctx.beginPath();
-        // ctx.arc(50, 50, 10, 0, Math.PI * 2);
-        // ctx.fillStyle = "#0095DD";
-        // ctx.fill();
-        // ctx.closePath();
-
         requestAnimationFrame(draw);
     }
 
     const calculateTraj = () => {
-        /*
-            paddleX = position of left edge of paddle
-            x = ball position on x axis
-            paddleWidth = length of paddle
-        */
        let distFromEdgeL = ball.x - paddle.x;
        return (distFromEdgeL / (paddle.width / 2) - 1) * 2;
     };
 
     
     draw();
-    // let interval = setInterval(draw, 1000/frames);
 });
