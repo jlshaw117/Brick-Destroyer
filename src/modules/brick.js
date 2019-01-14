@@ -8,10 +8,17 @@ class Brick {
         this.value = value;
     }
 
-    draw(screen, color) {
+    draw(screen) {
+
+        const COLORS = {
+            1: 'red',
+            2: 'blue',
+            3: 'green'
+        };
+
         screen.beginPath();
         // screen.lineWidth = 1;
-        screen.fillStyle = color;
+        screen.fillStyle = COLORS[this.value];
         screen.rect(this.x,this.y,this.edge,this.edge);
         screen.stroke();
         screen.fill();
