@@ -49,6 +49,8 @@ class Ball {
             } else {
                 this.dx = -this.dx;
             }
+            console.log(brick.value);
+            brick.value --;
         }
 
 
