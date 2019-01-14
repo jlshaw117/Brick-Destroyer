@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
         canvas.width = canvas.width;
         ball.draw(screen);
-        screen.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        paddle.draw(screen);
 
         if (gameStart) {
 
