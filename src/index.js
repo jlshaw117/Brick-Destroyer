@@ -1,5 +1,6 @@
 import Ball from './modules/ball';
 import Paddle from './modules/paddle';
+import Brick from './modules/brick';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -40,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = canvas.width;
         ball.draw(screen);
         paddle.draw(screen);
+        let b = new Brick(20, 20, 20, 20);
+        b.draw(screen, 'red');
 
         if (gameStart) {
 
