@@ -45,18 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (gameStart) {
 
-            if (Util.collisionWithWall(ball, canvas)) ball.dx = -ball.dx;
-
-            if (Util.collisionWithTop(ball)) {
-                ball.dy = -ball.dy;
-            } else if (ball.y + (ball.dy * ball.speed) > paddle.y - ball.radius && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
-                ball.speed += 0.2;
-                ball.dy = -ball.dy;
-                ball.dx = calculateTraj();
-            } else if (ball.y + (ball.dy * ball.speed)> canvas.height - ball.radius) {
-                alert("GAME OVER");
-                document.location.reload();
-            }
+            ball.collisionWithWall(canvas);
+            ball.collisionWithTop();
+            ball.collisionWithPaddle(paddle);
+            ball.collisionWithGround(canvas);
     
             ball.x += ball.dx * ball.speed;
             ball.y += ball.dy * ball.speed;
@@ -65,11 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(draw);
     }
 
-    const calculateTraj = () => {
-       let distFromEdgeL = ball.x - paddle.x;
-       return (distFromEdgeL / (paddle.width / 2) - 1) * 2;
-    };
-
-    
     draw();
 });
