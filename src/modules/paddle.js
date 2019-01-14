@@ -14,4 +14,4 @@ class Paddle {
     }
 }
 
-export { Paddle };
+export default Paddle;

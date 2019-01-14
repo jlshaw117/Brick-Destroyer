@@ -1,5 +1,5 @@
-import { Ball } from './ball';
-import { Paddle } from './paddle';
+import Ball from './modules/ball';
+import Paddle from './modules/paddle';
 
 
 document.addEventListener('DOMContentLoaded', () => {

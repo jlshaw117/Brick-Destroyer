@@ -19,4 +19,4 @@ class Ball {
     }
 }
 
-export { Ball };
+export default Ball;
