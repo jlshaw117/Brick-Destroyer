@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let canvas = document.getElementById('screen');
     let screen = canvas.getContext('2d');
     let paddle = new Paddle(canvas, 10, 100);
-    let ball = new Ball(5, canvas.width / 2, paddle.y - 5);
+    let ball = new Ball(8, canvas.width / 2, paddle.y - 8);
     let gameStart = false;
     let bricks = [];
     for (let y = 0; y < level.one.length; y++) {
         for (let x = 0; x < level.one[0].length; x++) {
             if (level.one[y][x] > 0) {
-                let b = new Brick(x * 20, y * 20, level.one[y][x]);
+                let b = new Brick(x * 40, y * 40, level.one[y][x]);
                 bricks.push(b);
             }
         }
