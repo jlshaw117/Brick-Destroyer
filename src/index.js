@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let paddle = new Paddle(canvas, 10, 100);
     let ball = new Ball(5, canvas.width / 2, paddle.y - 5);
     let gameStart = false;
+    let bricks = [];
+    for (let y = 0; y < level.one.length; y++) {
+        for (let x = 0; x < level.one[0].length; x++) {
+            if (level.one[y][x] > 0) {
+                let b = new Brick(x * 20, y * 20, level.one[y][x]);
+                bricks.push(b);
+            }
+        }
+    }
+
 
     canvas.addEventListener('mousemove', (e) => {
         let mousePos = calculateMousePos(e);
@@ -40,16 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function draw() {
         canvas.width = canvas.width;
-        ball.draw(screen);
         paddle.draw(screen);
-        for (let y = 0; y < level.one.length; y++) {
-            for (let x = 0; x < level.one[0].length; x++) {
-                if (level.one[y][x] > 0) {
-                    let b = new Brick(x * 20, y * 20);
-                    b.draw(screen, 'red');
-                }
-            }
-        }
+        bricks.forEach((brick) => brick.draw(screen, 'red'));
+        ball.draw(screen);
         
 
         if (gameStart) {
