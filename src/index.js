@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let canvas = document.getElementById('screen');
     let screen = canvas.getContext('2d');
     let paddle = new Paddle(canvas, 10, 100);
-    let ball = new Ball(canvas.width / 2, paddle.y - 5);
-    let dx = 0;
-    let dy = 0;
     let gameStart = false;
 
     canvas.addEventListener('mousemove', (e) => {
@@ -25,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('click', () => {
         if (!gameStart) {
             gameStart = true;
-            dy = -1;
+            ball.dy = -1;
         }
     });
 
@@ -37,28 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (gameStart) {
 
-            if (ball.x + (dx * ball.speed) > canvas.width - ball.radius || ball.x + (dx * ball.speed) < ball.radius) {
-                dx = -dx;
+            if (ball.x + (ball.dx * ball.speed) > canvas.width - ball.radius || ball.x + (ball.dx * ball.speed) < ball.radius) {
+                ball.dx = -ball.dx;
             }
     
-            // if (y + (dy * ball.speed) < ballRadius) {
-            //     dy = -dy;
+            // if (y + (ball.dy * ball.speed) < ballRadius) {
+            //     ball.dy = -ball.dy;
             // } 
     
-            if (ball.y + (dy * ball.speed) < ball.radius) {
-                dy = -dy;
-            } else if (ball.y + (dy * ball.speed) > paddle.y - ball.radius && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+            if (ball.y + (ball.dy * ball.speed) < ball.radius) {
+                ball.dy = -ball.dy;
+            } else if (ball.y + (ball.dy * ball.speed) > paddle.y - ball.radius && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
                 ball.speed += 0.2;
-                dy = -dy;
-                dx = calculateTraj();
-            } else if (ball.y + (dy * ball.speed)> canvas.height - ball.radius) {
+                ball.dy = -ball.dy;
+                ball.dx = calculateTraj();
+            } else if (ball.y + (ball.dy * ball.speed)> canvas.height - ball.radius) {
                 alert("GAME OVER");
                 document.location.reload();
                 // clearInterval(interval); // Needed for Chrome to end game
             }
     
-            ball.x += dx * ball.speed;
-            ball.y += dy * ball.speed;
+            ball.x += ball.dx * ball.speed;
+            ball.y += ball.dy * ball.speed;
         }
 
         
