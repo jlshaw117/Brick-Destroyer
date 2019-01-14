@@ -1,6 +1,7 @@
 import Ball from './modules/ball';
 import Paddle from './modules/paddle';
 import Brick from './modules/brick';
+import * as level from './modules/levels';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -41,8 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = canvas.width;
         ball.draw(screen);
         paddle.draw(screen);
-        let b = new Brick(20, 20, 20, 20);
-        b.draw(screen, 'red');
+        for (let y = 0; y < level.one.length; y++) {
+            for (let x = 0; x < level.one[0].length; x++) {
+                if (level.one[y][x] > 0) {
+                    let b = new Brick(x * 20, y * 20);
+                    b.draw(screen, 'red');
+                }
+            }
+        }
+        
 
         if (gameStart) {
 
@@ -57,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         requestAnimationFrame(draw);
     }
+    
 
     draw();
 });
