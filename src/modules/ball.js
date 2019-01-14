@@ -29,7 +29,7 @@ class Ball {
     collisionWithBrick(brick) {
         let left = brick.x;
         let right = brick.x + brick.edge;
-        let bottom = brick.y + 100;
+        let bottom = brick.y + brick.edge;
         let top = brick.y;
 
         this.bottom = this.y + this.radius;
