@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ball.collisionWithPaddle(paddle);
             ball.collisionWithGround(canvas);
             bricks.forEach((brick) => ball.collisionWithBrick(brick));
+            bricks.forEach((brick, i) => {
+                if (brick.value <= 0) bricks.splice(i, 1);
+            });
     
             ball.x += ball.dx * ball.speed;
             ball.y += ball.dy * ball.speed;
