@@ -1,7 +1,5 @@
 import Ball from './modules/ball';
 import Paddle from './modules/paddle';
-import * as Util from './utility/util';
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
