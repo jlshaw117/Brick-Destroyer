@@ -2,11 +2,12 @@ class Ball {
 
     constructor(game, radius, startX, startY) {
         this.game = game;
+        this.defaultSpeed = 2 * game.difficulty;
         this.x = startX;
         this.y = startY;
         this.dx = 0;
         this.dy = 0;
-        this.speed = 2;
+        this.speed = this.defaultSpeed;
         this.radius = radius;
     
     }
@@ -83,6 +84,9 @@ class Ball {
                 this.game.roundStart = false;
                 this.y = this.game.paddle.y - this.radius;
                 this.x = this.game.paddle.x + this.game.paddle.width / 2;
+                this.dy = -this.dy;
+                this.dx = 0;
+                this.speed = this.defaultSpeed;
             }
         }
     }
@@ -92,9 +96,6 @@ class Ball {
         this.dx = (distFromEdgeL / (paddle.width / 2) - 1) * 2;
     }
 
-    move(newX, newY) {
-
-    }
 }
 
 export default Ball;
