@@ -16,6 +16,7 @@ class Game {
         this.bricks = [];
         this.level = 1;
         this.levels = levels;
+        this.difficulty = 1;
         // this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.currentLevel = this.levels[1];
     }
