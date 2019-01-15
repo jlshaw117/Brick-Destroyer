@@ -6,6 +6,8 @@ import Brick from "./brick";
 class Game {
 
     constructor(lives = 3) {
+        this.gameOver = document.getElementById('game-over');
+        this.stats = this.gameOver.getContext('2d');
         this.lives = lives;
         this.difficulty = 1;
         this.roundStart = false;
@@ -33,7 +35,6 @@ class Game {
 
     nextLevel() {
         this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
-        console.log(this.ball.speed);
         this.roundStart = false;
         this.level += 1;
         this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
@@ -43,6 +44,20 @@ class Game {
         this.ball.dy = 0;
         this.ball.x = this.paddle.x + (this.paddle.width / 2);
         this.ball.y = this.paddle.y - this.ball.radius;
+    }
+
+    resetGame() {
+        this.lives = 3;
+        this.difficulty = 1;
+        this.roundStart = false;
+        this.score = 0;
+        this.paddle = new Paddle(this.canvas, 10, 100);
+        this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
+        this.bricks = [];
+        this.level = 1;
+        this.levels = levels;
+        this.currentLevel = this.levels[0];
+        this.buildLevel();
     }
 
     play() {
@@ -97,9 +112,26 @@ class Game {
                 game.ball.collisionWithPaddle(game.paddle);
                 game.ball.collisionWithGround(game.canvas);
                 if (game.lives === 0){
-                    cancelAnimationFrame(id);
-                    alert('Game Over');
-                    return;
+                    game.canvas.setAttribute("style", "display: none;");
+                    game.gameOver.width = game.gameOver.width;
+                    game.stats.beginPath();
+                    game.stats.font = '40px sans-serif';
+                    game.stats.fillStyle = 'white';
+                    game.stats.fillText('GAME OVER', game.canvas.width / 2 - 100, 100 );
+                    game.stats.fillText('LEVEL', game.canvas.width / 2 - 30, 200 );
+                    game.stats.fillText(`${game.level}`, game.canvas.width / 2 + 10, 250 );
+                    game.stats.fillText('SCORE', game.canvas.width / 2 - 50, 350 );
+                    game.stats.fillText(`${game.score}`, game.canvas.width / 2 + 10, 400 );
+                    game.stats.fillText('Click to start a new game', game.canvas.width / 2 - 210, 500 );
+                    game.stats.closePath();
+                    game.gameOver.setAttribute("style", "display: block");
+
+                    game.gameOver.addEventListener('click', () => {
+                        game.canvas.setAttribute('style', 'display: block;');
+                        game.gameOver.setAttribute('style', 'display: none;');
+                        game.resetGame();
+                    });
+
                 }
                 game.bricks.forEach((brick) => game.ball.collisionWithBrick(brick));
                 game.bricks.forEach((brick, i) => {
@@ -115,6 +147,7 @@ class Game {
         }
 
         let id = requestAnimationFrame(draw);
+
     }
 }
 
