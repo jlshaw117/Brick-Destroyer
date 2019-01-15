@@ -17,12 +17,6 @@ class Brick {
         };
 
         screen.beginPath();
-        // screen.lineWidth = 1;
-        // screen.fillStyle = COLORS[this.value];
-        // screen.rect(this.x,this.y,this.edge,this.edge);
-        // screen.stroke();
-        // screen.fill();
-        // screen.closePath();
 
         const img = document.getElementById('sprites');
         screen.drawImage(img, COLORS[this.value].x, COLORS[this.value].y, 30, 30, this.x, this.y, this.edge, this.edge);
