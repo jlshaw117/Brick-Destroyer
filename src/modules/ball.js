@@ -2,14 +2,13 @@ class Ball {
 
     constructor(game, radius, startX, startY) {
         this.game = game;
-        this.defaultSpeed = 2 * game.difficulty;
+        this.defaultSpeed = 2 * this.game.difficulty;
         this.x = startX;
         this.y = startY;
         this.dx = 0;
         this.dy = 0;
         this.speed = this.defaultSpeed;
         this.radius = radius;
-    
     }
 
     draw(screen) {

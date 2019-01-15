@@ -7,6 +7,7 @@ class Game {
 
     constructor(lives = 3) {
         this.lives = lives;
+        this.difficulty = 1;
         this.roundStart = false;
         this.score = 0;
         this.canvas = document.getElementById('screen');
@@ -16,7 +17,6 @@ class Game {
         this.bricks = [];
         this.level = 1;
         this.levels = levels;
-        this.difficulty = 1;
         // this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.currentLevel = this.levels[1];
     }
