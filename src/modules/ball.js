@@ -1,6 +1,7 @@
 class Ball {
 
-    constructor(radius, startX, startY) {
+    constructor(game, radius, startX, startY) {
+        this.game = game;
         this.x = startX;
         this.y = startY;
         this.dx = 0;
@@ -50,7 +51,8 @@ class Ball {
                 this.dy = -this.dy;
             } else {
                 this.dx = -this.dx;
-            } 
+            }
+            this.game.score += 1;
             brick.value--;
         }
 
