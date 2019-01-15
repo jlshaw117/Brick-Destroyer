@@ -8,15 +8,26 @@
     <script src="dist/main.js"></script>
     <style>
         #screen {
-            border: 1px solid black
+            border: 1px solid black;
+            background-image: url('./breakout_bg.png');
+            background-size: cover;
         }
 
         h1 {
             margin: 10px 0;
         }
+
+        #sprites {
+            display: none;
+        }
+
+        body {
+            /* background: black; */
+        }
     </style>
 </head>
 <body>
+    <img id='sprites' src="./breakout_sprites.png">
     <header>
         <h1>Title</h1>
     </header>
