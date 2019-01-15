@@ -11,10 +11,12 @@ class Ball {
     }
 
     draw(screen) {
+        const img = document.getElementById('sprites');
         screen.beginPath();
-        screen.fillStyle = 'black';
+        screen.fillStyle = 'rgba(255, 255,255, 0.0)';
         screen.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         screen.fill();
+        screen.drawImage(img, 160, 200, 15, 15, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
         screen.closePath();
     }
 
@@ -44,12 +46,12 @@ class Ball {
 
             if (this.right > left && this.left < right && this.top >= bottom) {
                 this.dy = -this.dy;
-            } else if (this.right > left && this.left < right && this.bottom >= top) {
+            } else if (this.right > left && this.left < right && this.bottom <= top) {
                 this.dy = -this.dy;
             } else {
                 this.dx = -this.dx;
-            }
-            brick.value --;
+            } 
+            brick.value--;
         }
 
 
