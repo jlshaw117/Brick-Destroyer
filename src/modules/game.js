@@ -8,10 +8,11 @@ class Game {
     constructor(lives = 3) {
         this.lives = lives;
         this.roundStart = false;
+        this.score = 0;
         this.canvas = document.getElementById('screen');
         this.screen = this.canvas.getContext('2d');
         this.paddle = new Paddle(this.canvas, 10, 100);
-        this.ball = new Ball(15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
+        this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
         this.bricks = [];
         this.level = 1;
         this.levels = levels;
@@ -60,6 +61,13 @@ class Game {
 
         function draw() {
             game.canvas.width = game.canvas.width;
+            game.screen.beginPath();
+            game.screen.font = '30px sans-serif';
+            game.screen.fillStyle = 'white';
+            game.screen.fillText(`Level: ${game.level}`, 10, 50);
+            game.screen.fillText(`Score: ${game.score}`, game.canvas.width / 2 - 30, 50);
+            game.screen.fillText(`Lives: ${game.lives}`, game.canvas.width - 120, 50);
+            game.screen.closePath();
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
             game.ball.draw(game.screen);
