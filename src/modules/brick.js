@@ -18,11 +18,16 @@ class Brick {
 
         screen.beginPath();
         // screen.lineWidth = 1;
-        screen.fillStyle = COLORS[this.value];
-        screen.rect(this.x,this.y,this.edge,this.edge);
-        screen.stroke();
-        screen.fill();
-        screen.closePath();
+        // screen.fillStyle = COLORS[this.value];
+        // screen.rect(this.x,this.y,this.edge,this.edge);
+        // screen.stroke();
+        // screen.fill();
+        // screen.closePath();
+
+        const img = document.getElementById('sprites');
+        screen.drawImage(img, 0, 0, 30, 30, this.x, this.y, this.edge, this.edge);
+        
+
     }
 }
 
