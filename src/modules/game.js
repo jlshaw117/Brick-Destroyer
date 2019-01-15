@@ -11,7 +11,7 @@ class Game {
         this.canvas = document.getElementById('screen');
         this.screen = this.canvas.getContext('2d');
         this.paddle = new Paddle(this.canvas, 10, 100);
-        this.ball = new Ball(8, this.canvas.width / 2, this.paddle.y - 8);
+        this.ball = new Ball(15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
         this.bricks = [];
         this.level = 1;
         this.levels = levels;
@@ -30,13 +30,12 @@ class Game {
     }
 
     play() {
-        console.log(this.bricks);
         this.buildLevel();
         let game = this;
         this.canvas.addEventListener('click', () => {
             if (!this.roundStart) {
                 this.roundStart = true;
-                this.ball.dy =-1;
+                this.ball.dy = -1;
             }
         });
 
