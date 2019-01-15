@@ -51,6 +51,6 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
 
 #### Tue 01/14/19
 
-- [] Work on level progressio
-- [] Work on starting a new game after loss
-- [] Finuishing touches
+- [ ] Work on level progression
+- [ ] Work on starting a new game after loss
+- [ ] Finuishing touches
