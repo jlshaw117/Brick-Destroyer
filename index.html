@@ -6,33 +6,66 @@
     <title>Brick Breaker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="dist/main.js"></script>
-    <link rel="shortcut icon" href="./break_out_icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./assets/break_out_icon.ico" type="image/x-icon" />
     <style>
         #screen {
             border: 1px solid black;
-            background-image: url('./breakout_bg.png');
+            background-image: url('./assets/breakout_bg.png');
             background-size: cover;
         }
 
+        body {
+            background: rgb(75, 27, 27);
+        }
+
         h1 {
-            margin: 10px 0;
+            margin: 10px;
+            color: white;  /* Fallback: assume this color ON TOP of image */
+            background: url(assets/text_img.jpg) no-repeat;
+            background-size: 100%;
+            font-size: 40px;
+            font-weight: 700;
+            object-fit: cover;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         #sprites {
             display: none;
         }
 
-        body {
-            /* background: black; */
+        .outer-wrapper {
+            min-width: 920px;
+        }
+
+        .inner-wrapper {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        header div {
+            display: flex;
         }
     </style>
 </head>
 <body>
-    <img id='sprites' src="./breakout_sprites.png">
-    <header>
-        <h1>Title</h1>
-    </header>
-    
-    <canvas id='screen' width='920' height="700"></canvas>
+    <img id='sprites' src="./assets/breakout_sprites.png">
+    <div class='outer-wrapper'>
+        <div class='inner-wrapper'>
+            <header>
+                <div>
+                    <h1>Brick</h1>
+                    <h1>Smasher</h1>
+                </div>
+            </header>
+            
+            <canvas id='screen' width='920' height="700"></canvas>
+        </div>
+    </div>
 </body>
 </html>
