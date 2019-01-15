@@ -11,9 +11,9 @@ class Brick {
     draw(screen) {
 
         const COLORS = {
-            1: 'red',
-            2: 'blue',
-            3: 'green'
+            1: {x: 0, y: 120},
+            2: { x: 360, y: 80},
+            3: {x: 320, y: 80}
         };
 
         screen.beginPath();
@@ -25,7 +25,7 @@ class Brick {
         // screen.closePath();
 
         const img = document.getElementById('sprites');
-        screen.drawImage(img, 0, 0, 30, 30, this.x, this.y, this.edge, this.edge);
+        screen.drawImage(img, COLORS[this.value].x, COLORS[this.value].y, 30, 30, this.x, this.y, this.edge, this.edge);
         
 
     }
