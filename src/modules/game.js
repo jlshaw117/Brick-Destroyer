@@ -17,8 +17,7 @@ class Game {
         this.bricks = [];
         this.level = 1;
         this.levels = levels;
-        // this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
-        this.currentLevel = this.levels[1];
+        this.currentLevel = this.levels[0];
     }
 
     buildLevel() {
@@ -30,6 +29,20 @@ class Game {
                 }
             }
         }
+    }
+
+    nextLevel() {
+        this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
+        console.log(this.ball.speed);
+        this.roundStart = false;
+        this.level += 1;
+        this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
+        this.buildLevel();
+        this.difficulty += 0.1;
+        this.ball.dx = 0;
+        this.ball.dy = 0;
+        this.ball.x = this.paddle.x + (this.paddle.width / 2);
+        this.ball.y = this.paddle.y - this.ball.radius;
     }
 
     play() {
@@ -74,9 +87,7 @@ class Game {
             game.bricks.forEach((brick) => brick.draw(game.screen));
             game.ball.draw(game.screen);
             if (game.bricks.length === 0) {
-                cancelAnimationFrame(id);
-                alert('You won');
-                return;
+                game.nextLevel();
             }
             
             if (game.roundStart) {
