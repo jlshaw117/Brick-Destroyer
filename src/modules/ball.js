@@ -78,7 +78,7 @@ class Ball {
 
     collisionWithGround(canvas) {
         if (this.y + (this.dy * this.speed) > canvas.height - this.radius) {
-            if (!(this.game.lives === 0)) {
+            if (this.game.lives > 0) {
                 this.game.lives -= 1;
                 this.game.roundStart = false;
                 this.y = this.game.paddle.y - this.radius;

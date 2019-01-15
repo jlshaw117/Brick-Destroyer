@@ -71,26 +71,37 @@ class Game {
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
             game.ball.draw(game.screen);
-
+            if (game.bricks.length === 0) {
+                cancelAnimationFrame(id);
+                alert('You won');
+                return;
+            }
+            
             if (game.roundStart) {
-
+                
                 game.ball.collisionWithWall(game.canvas);
                 game.ball.collisionWithTop();
                 game.ball.collisionWithPaddle(game.paddle);
                 game.ball.collisionWithGround(game.canvas);
+                if (game.lives === 0){
+                    cancelAnimationFrame(id);
+                    alert('Game Over');
+                    return;
+                }
                 game.bricks.forEach((brick) => game.ball.collisionWithBrick(brick));
                 game.bricks.forEach((brick, i) => {
                     if (brick.value <= 0) game.bricks.splice(i, 1);
                 });
+                
 
                 game.ball.x += game.ball.dx * game.ball.speed;
                 game.ball.y += game.ball.dy * game.ball.speed;
             }
 
-            requestAnimationFrame(draw);
+            id = requestAnimationFrame(draw);
         }
 
-        draw();
+        let id = requestAnimationFrame(draw);
     }
 }
 
