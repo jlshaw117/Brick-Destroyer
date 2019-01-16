@@ -10,7 +10,7 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
 
 ## Functionality and MVP Features
 
-* There are ten levels to cycle through
+* There are 5 levels to cycle through
 * Bricks will be generated from a predesigned matrix
 * Players use the mouse to move the paddle left and right
 * The trajectory of the ball changes based on where it hits the paddle
@@ -50,6 +50,12 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
 ### Splash Page Layout
 
 <img src='./assets/home_page.png' width='500' />
+
+### Levels
+
+Space Invaders         |  Blinky                |   Question Mark Box   | Attari
+:-------------------------:|:-------------------------:|:-------------------:|:-----------:
+![](./assets/level2.png)  |  ![](./assets/level3.png)  | ![](./assets/level4.png) | ![](./assets/level5.png)
 
 * Vanilla javascript
     * Used for gamelogic
