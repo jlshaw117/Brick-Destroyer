@@ -17,7 +17,7 @@ class Game {
         this.paddle = new Paddle(this.canvas, 10, 100);
         this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
         this.bricks = [];
-        this.level = 1;
+        this.level = 0;
         this.levels = levels;
         this.currentLevel = this.levels[0];
     }
@@ -37,7 +37,7 @@ class Game {
         this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
         this.roundStart = false;
         this.level += 1;
-        this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
+        this.currentLevel = this.levels[(this.level) % this.levels.length];
         this.buildLevel();
         this.difficulty += 0.2;
         this.ball.dx = 0;
@@ -101,6 +101,14 @@ class Game {
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
             game.ball.draw(game.screen);
+            if (game.level === 0) {
+                game.screen.beginPath();
+                game.screen.font = '30px sans-serif';
+                game.screen.fillStyle = 'white';
+                game.screen.fillText('Move mouse to control paddle', game.canvas.width / 2 - 190, 200);
+                game.screen.fillText('Click to launch ball', game.canvas.width / 2 - 120, 300);
+                game.screen.closePath();
+            }
             if (game.bricks.length === 0) {
                 game.nextLevel();
             }
