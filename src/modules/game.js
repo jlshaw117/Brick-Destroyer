@@ -39,7 +39,7 @@ class Game {
         this.level += 1;
         this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.buildLevel();
-        this.difficulty += 0.1;
+        this.difficulty += 0.2;
         this.ball.dx = 0;
         this.ball.dy = 0;
         this.ball.x = this.paddle.x + (this.paddle.width / 2);
