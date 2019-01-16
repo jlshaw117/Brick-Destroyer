@@ -21,6 +21,7 @@ class Brick {
 
         const img = document.getElementById('sprites');
         screen.drawImage(img, POSITIONS[this.value].x, POSITIONS[this.value].y, 30, 30, this.x, this.y, this.edge, this.edge);
+        screen.closePath();
         
 
     }

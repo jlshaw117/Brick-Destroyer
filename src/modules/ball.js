@@ -53,7 +53,7 @@ class Ball {
                 this.dx = -this.dx;
             }
             this.game.score += 1;
-            brick.value--;
+            brick.value --;
         }
 
 
