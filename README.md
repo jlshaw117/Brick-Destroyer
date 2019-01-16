@@ -1,5 +1,7 @@
 # Brick Destroyer
 
+[Live](https://jlshaw117.github.io/Brick-Destroyer/)
+
 ## Overview
 
 Brick Destroyer is a clone of the classic arcade game breakout. Players can control a paddle along the bottom of the screen with their mouse. They use the paddle to deflect the ball around a level to break bricks.
@@ -14,6 +16,20 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
 * The trajectory of the ball changes based on where it hits the paddle
 * speed increases on paddle hit also starting speed increases every level
 * Tracks score, current level, and lives
+
+## Code
+
+* Calculates the trajectory of the ball after collision with paddle
+
+```javascript
+    // ball.js
+     calculateTraj(paddle)  {
+        let distFromEdgeL = this.x - paddle.x; // determines position from left edge
+        //gives a number from -1 to 1 to determine what percent of the paddle that the
+        //ball contacts and sets the x direction. 
+        this.dx = (distFromEdgeL / (paddle.width / 2) - 1) * 2; 
+    }
+```
 
 ## Wire Frame
 
