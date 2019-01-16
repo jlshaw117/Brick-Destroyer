@@ -1,6 +1,6 @@
 import Paddle from "./paddle";
 import Ball from "./ball";
-import levels from './levels';
+import {levels, tutorial} from './levels';
 import Brick from "./brick";
 
 class Game {
@@ -19,7 +19,7 @@ class Game {
         this.bricks = [];
         this.level = 0;
         this.levels = levels;
-        this.currentLevel = this.levels[0];
+        this.currentLevel = tutorial;
     }
 
     buildLevel() {
@@ -37,7 +37,7 @@ class Game {
         this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
         this.roundStart = false;
         this.level += 1;
-        this.currentLevel = this.levels[(this.level) % this.levels.length];
+        this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.buildLevel();
         this.difficulty += 0.2;
         this.ball.dx = 0;

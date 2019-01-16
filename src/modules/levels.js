@@ -1,5 +1,5 @@
 // 23 X 11
- const testLevel = [
+ export const tutorial = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -87,4 +87,4 @@ const one = [
     [0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0]
 ];
 
-export default [testLevel, one, two, three, four, five];
+export const levels = [one, two, three, four, five];
