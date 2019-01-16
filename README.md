@@ -31,6 +31,20 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
     }
 ```
 
+* Event listener to launch the ball
+
+```javascript
+    //game.js
+    this.canvas.addEventListener('click', () => {
+                //starts round if round has not started
+                if (!this.roundStart) {
+                    this.roundStart = true;
+                    //sets direction of ball to go up
+                    this.ball.dy = -1;
+                }
+            });
+```
+
 ## Wire Frame
 
 ### Splash Page Layout
