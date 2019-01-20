@@ -54,9 +54,9 @@ class Game {
         this.paddle = new Paddle(this.canvas, 10, 100);
         this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
         this.bricks = [];
-        this.level = 1;
+        this.level = 0;
         this.levels = levels;
-        this.currentLevel = this.levels[0];
+        this.currentLevel = tutorial;
         this.buildLevel();
     }
 
@@ -95,18 +95,21 @@ class Game {
             game.screen.font = '30px sans-serif';
             game.screen.fillStyle = 'white';
             game.screen.fillText(`Level: ${game.level}`, 10, 50);
-            game.screen.fillText(`Score: ${game.score}`, game.canvas.width / 2 - 30, 50);
-            game.screen.fillText(`Lives: ${game.lives}`, game.canvas.width - 120, 50);
+            game.screen.textAlign = 'center';
+            game.screen.fillText(`Score: ${game.score}`, game.canvas.width / 2, 50);
+            game.screen.textAlign = 'end';
+            game.screen.fillText(`Lives: ${game.lives}`, game.canvas.width - 10, 50);
             game.screen.closePath();
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
             game.ball.draw(game.screen);
             if (game.level === 0) {
                 game.screen.beginPath();
+                game.screen.textAlign = 'center';
                 game.screen.font = '30px sans-serif';
                 game.screen.fillStyle = 'white';
-                game.screen.fillText('Move mouse to control paddle', game.canvas.width / 2 - 190, 200);
-                game.screen.fillText('Click to launch ball', game.canvas.width / 2 - 120, 300);
+                game.screen.fillText('Move mouse to control paddle', game.canvas.width / 2, 200);
+                game.screen.fillText('Click to launch ball', game.canvas.width / 2, 300);
                 game.screen.closePath();
             }
             if (game.bricks.length === 0) {
@@ -125,12 +128,13 @@ class Game {
                     game.stats.beginPath();
                     game.stats.font = '40px sans-serif';
                     game.stats.fillStyle = 'white';
-                    game.stats.fillText('GAME OVER', game.canvas.width / 2 - 100, 100 );
-                    game.stats.fillText('LEVEL', game.canvas.width / 2 - 30, 200 );
-                    game.stats.fillText(`${game.level}`, game.canvas.width / 2 + 10, 250 );
-                    game.stats.fillText('SCORE', game.canvas.width / 2 - 50, 350 );
-                    game.stats.fillText(`${game.score}`, game.canvas.width / 2 + 10, 400 );
-                    game.stats.fillText('Click to start a new game', game.canvas.width / 2 - 210, 500 );
+                    game.stats.textAlign = 'center';
+                    game.stats.fillText('GAME OVER', game.canvas.width / 2, 100 );
+                    game.stats.fillText('LEVEL', game.canvas.width / 2, 200 );
+                    game.stats.fillText(`${game.level}`, game.canvas.width / 2, 250 );
+                    game.stats.fillText('SCORE', game.canvas.width / 2, 350 );
+                    game.stats.fillText(`${game.score}`, game.canvas.width / 2, 400 );
+                    game.stats.fillText('Click to start a new game', game.canvas.width / 2, 500 );
                     game.stats.closePath();
                     game.gameOver.setAttribute("style", "display: block");
 
