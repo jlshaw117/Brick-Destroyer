@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +22,7 @@
 
         h1 {
             margin: 10px;
-            color: rgb(122, 5, 5); 
+            color: rgb(122, 5, 5);
             /* background: url(assets/title_background.jpeg) no-repeat; */
             /* background-size: 100%; */
             font-size: 40px;
@@ -31,7 +32,7 @@
             -webkit-text-fill-color: transparent; */
         }
 
-        #sprites {
+        img {
             display: none;
         }
 
@@ -60,8 +61,10 @@
         }
     </style>
 </head>
+
 <body>
     <img id='sprites' src="./assets/breakout_sprites.png">
+    <img id='paddle-sprites' src="./assets/paddle_sprites.png">
     <div class='outer-wrapper'>
         <div class='inner-wrapper'>
             <header>
@@ -70,10 +73,11 @@
                     <h1>Destroyer</h1>
                 </div>
             </header>
-            
+
             <canvas id='screen' width='920' height="700"></canvas>
             <canvas id='game-over' width='920' height="700"></canvas>
         </div>
     </div>
 </body>
+
 </html>
