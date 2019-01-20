@@ -8,11 +8,27 @@ class Paddle {
         this.x = canvas.width / 2 - (this.width / 2);
         this.y = canvas.height - 30 - 10;
         this.idx = 1;
-        this.coords = {
+        this.blaster = false;
+        this.catch = true;
+        this.blasterCoords = {
+            0: { x: 75, y: 0 },
             1: { x: 0, y: 0 },
             2: { x: 0, y: 30 },
             3: { x: 0, y: 60 },
             4: { x: 0, y: 90 }
+        };
+        this.catchCoords = {
+            0: { x: 150, y: 0 },
+            1: { x: 150, y: 0 },
+            2: { x: 150, y: 26 },
+            3: { x: 150, y: 52 },
+            4: { x: 150, y: 78 }
+        };
+        this.plainCoords = {
+            1: { x: 225, y: 0 },
+            2: { x: 225, y: 15 },
+            3: { x: 225, y: 30 },
+            4: { x: 225, y: 45 }
         };
     }
 
@@ -24,8 +40,14 @@ class Paddle {
             this.idx = 1;
         }
         const img = document.getElementById('paddle-sprites');
-        screen.drawImage(img, this.coords[Math.floor(this.idx)].x, this.coords[Math.floor(this.idx)].y, 75, 30, this.x, this.y - 15, this.width, this.height + 15);
-        screen.drawImage(img, 0, this.coords[Math.floor(this.idx)], 75, 30, this.x, this.y, this.width, this.height);
+        if (this.catch) {
+            screen.drawImage(img, this.catchCoords[Math.floor(this.idx)].x, this.catchCoords[Math.floor(this.idx)].y, 75, 26, this.x, this.y - 11, this.width, this.height + 11);
+        } else {
+            screen.drawImage(img, this.plainCoords[Math.floor(this.idx)].x, this.plainCoords[Math.floor(this.idx)].y, 75, 15, this.x, this.y, this.width, this.height);
+
+        }
+
+        // screen.drawImage(img, 0, this.coords[Math.floor(this.idx)], 75, 30, this.x, this.y, this.width, this.height);
     }
 }
 
