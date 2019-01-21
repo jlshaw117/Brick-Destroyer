@@ -48,6 +48,7 @@ class Game {
         this.ball.dy = 0;
         this.ball.x = this.paddle.x + (this.paddle.width / 2);
         this.ball.y = this.paddle.y - this.ball.radius;
+        this.powerUps = [];
     }
 
     resetGame() {
@@ -159,9 +160,13 @@ class Game {
                     }
                 });
 
-                game.powerUps.forEach((power) => {
-                    power.draw(game.screen);
-                    power.y += power.speed;
+                game.powerUps.forEach((power, i) => {
+                    if (power.checkForCollision(game.paddle, game.canvas.height)) {
+                        game.powerUps.splice(i, 1);
+                    } else {
+                        power.draw(game.screen);
+                        power.y += power.speed;
+                    }
                 });
 
                 game.ball.x += game.ball.dx * game.ball.speed;
