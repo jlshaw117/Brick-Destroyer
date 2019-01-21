@@ -91,6 +91,7 @@ class Ball {
                 this.dx = 0;
                 this.speed = this.defaultSpeed;
                 this.game.paddle.catch = true;
+                this.game.paddle.reset();
             }
         }
     }
