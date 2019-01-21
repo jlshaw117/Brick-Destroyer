@@ -6,7 +6,7 @@ class PowerUp {
         this.speed = 1;
         let powerUps = ['bigger', 'smaller', 'split', 'extra', 'blaster', 'catch'];
         let idx = Math.floor(Math.random() * 6);
-        this.powerUp = 'blaster';
+        this.powerUp = 'catch';
         this.height = 31;
         this.width = 33;
         this.coords = {
@@ -39,6 +39,9 @@ class PowerUp {
                         paddle.blaster = false;
                         paddle.blasterId = null;
                     }, 10000);
+                    return true;
+                case 'catch':
+                    paddle.catch = true;
                     return true;
                 default:
                     break;
