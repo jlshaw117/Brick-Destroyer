@@ -6,7 +6,7 @@ class PowerUp {
         this.speed = 1;
         let powerUps = ['bigger', 'smaller', 'split', 'extra', 'blaster', 'catch'];
         let idx = Math.floor(Math.random() * 6);
-        this.powerUp = 'extra';
+        this.powerUp = 'smaller';
         this.height = 31;
         this.width = 33;
         this.coords = {
@@ -45,6 +45,12 @@ class PowerUp {
                     return true;
                 case 'extra':
                     game.lives += 1;
+                    return true;
+                case 'bigger':
+                    if (paddle.width < 400) paddle.width += 50;
+                    return true;
+                case 'smaller':
+                    if (paddle.width > 50) paddle.width -= 50;
                     return true;
                 default:
                     break;
