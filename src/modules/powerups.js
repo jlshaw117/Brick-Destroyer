@@ -1,12 +1,13 @@
+import Ball from "./ball";
 
 class PowerUp {
     constructor(x, y) {
         this.x = x;
         this.y = y;
         this.speed = 1;
-        let powerUps = ['bigger', 'smaller', 'split', 'extra', 'blaster', 'catch'];
-        let idx = Math.floor(Math.random() * 6);
-        this.powerUp = 'smaller';
+        let powerUps = ['bigger', 'smaller', 'split', 'extra', 'blaster'];
+        let idx = Math.floor(Math.random() * powerUps.length);
+        this.powerUp = powerUps[idx];
         this.height = 31;
         this.width = 33;
         this.coords = {
@@ -52,6 +53,16 @@ class PowerUp {
                 case 'smaller':
                     if (paddle.width > 50) paddle.width -= 50;
                     return true;
+                case 'split':
+                    let new_balls = [];
+                    game.balls.forEach(ball => {
+                        let new_ball = new Ball(game, ball.radius, ball.x, ball.y);
+                        new_ball.dx = -ball.dx;
+                        new_ball.dy = ball.dy;
+                        new_balls.push(new_ball);
+                    });
+                    game.balls = game.balls.concat(new_balls);
+                return true;
                 default:
                     break;
             }
