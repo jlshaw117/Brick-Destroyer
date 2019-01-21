@@ -2,6 +2,7 @@ import Paddle from "./paddle";
 import Ball from "./ball";
 import {levels, tutorial} from './levels';
 import Brick from "./brick";
+import PowerUp from './powerups';
 
 class Game {
 
@@ -20,6 +21,7 @@ class Game {
         this.level = 0;
         this.levels = levels;
         this.currentLevel = tutorial;
+        this.powerUps = [];
     }
 
     buildLevel() {
@@ -150,9 +152,17 @@ class Game {
                 }
                 game.bricks.forEach((brick) => game.ball.collisionWithBrick(brick));
                 game.bricks.forEach((brick, i) => {
-                    if (brick.value <= 0) game.bricks.splice(i, 1);
+                    if (brick.value <= 0) {
+                        let power = new PowerUp(brick.x, brick.y);
+                        game.powerUps.push(power);
+                        game.bricks.splice(i, 1);
+                    }
                 });
-                
+
+                game.powerUps.forEach((power) => {
+                    power.draw(game.screen);
+                    power.y += power.speed;
+                });
 
                 game.ball.x += game.ball.dx * game.ball.speed;
                 game.ball.y += game.ball.dy * game.ball.speed;
