@@ -98,6 +98,7 @@ class Game {
         function draw() {
             game.canvas.width = game.canvas.width;
             game.screen.beginPath();
+
             game.screen.font = '30px sans-serif';
             game.screen.fillStyle = 'white';
             game.screen.fillText(`Level: ${game.level}`, 10, 50);
@@ -105,6 +106,15 @@ class Game {
             game.screen.fillText(`Score: ${game.score}`, game.canvas.width / 2, 50);
             game.screen.textAlign = 'end';
             game.screen.fillText(`Lives: ${game.lives}`, game.canvas.width - 10, 50);
+            game.screen.textAlign = 'center';
+            if (game.paddle.blaster && game.paddle.catch) {
+                game.screen.fillText('Click to fire blaster and launch ball', game.canvas.width / 2, game.canvas.height - 5);
+            } else if (game.paddle.catch) {
+                game.screen.fillText('Click to launch ball', game.canvas.width / 2, game.canvas.height - 5);
+            } else if (game.paddle.blaster) {
+                game.screen.fillText('Click to fire blaster', game.canvas.width / 2, game.canvas.height - 5);
+            }
+
             game.screen.closePath();
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
@@ -121,6 +131,15 @@ class Game {
             if (game.bricks.length === 0) {
                 game.nextLevel();
             }
+
+            game.powerUps.forEach((power, i) => {
+                if (power.checkForCollision(game.paddle, game.canvas.height)) {
+                    game.powerUps.splice(i, 1);
+                } else {
+                    power.draw(game.screen);
+                    power.y += power.speed;
+                }
+            });
             
             if (game.roundStart) {
                 
@@ -157,15 +176,6 @@ class Game {
                         let power = new PowerUp(brick.x, brick.y);
                         game.powerUps.push(power);
                         game.bricks.splice(i, 1);
-                    }
-                });
-
-                game.powerUps.forEach((power, i) => {
-                    if (power.checkForCollision(game.paddle, game.canvas.height)) {
-                        game.powerUps.splice(i, 1);
-                    } else {
-                        power.draw(game.screen);
-                        power.y += power.speed;
                     }
                 });
 
