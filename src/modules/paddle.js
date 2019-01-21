@@ -37,6 +37,10 @@ class Paddle {
         };
     }
 
+    reset() {
+        this.width = 100;
+    }
+
     draw(screen) {
         // screen.fillRect(this.x, this.y, this.width, this.height);
         if (this.idx < 4) {
