@@ -19,6 +19,30 @@ class PowerUp {
         };
     }
 
+    checkForCollision(paddle, height) {
+        let pLeft = paddle.x;
+        let pRight = paddle.x + paddle.width;
+        let pTop = paddle.y;
+        let pBottom = paddle.y + paddle.height;
+        let left = this.x;
+        let right = this.x + this.width;
+        let top = this.y;
+        let bottom = this.y + this.height;
+        if (right >= pLeft && left <= pRight && bottom >= pTop && top <= pBottom) {
+            switch (this.powerUp) {
+                case 'blaster':
+                    paddle.blaster = true;
+                    return true;
+                default:
+                    break;
+            }
+        } else if (top > height){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     draw(screen) {
 
         let img = document.getElementById('powerups');
