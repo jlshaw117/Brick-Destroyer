@@ -42,6 +42,7 @@ class Game {
         this.roundStart = false;
         this.paddle.catch = true;
         this.paddle.blaster = false;
+        this.paddle.width = 100;
         this.level += 1;
         this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.buildLevel();
