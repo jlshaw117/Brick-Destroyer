@@ -10,7 +10,7 @@ class Bullet {
     }
 
     draw(screen) {
-        screen,fillStyle = 'blue';
+        screen.fillStyle = 'blue';
         screen.fillRect(x, y, width, height);
         screen.arc(x + (width / 2), y, width / 2 - 0.5, 0, Math.PI, true);
         screen.arc(x + (width / 2), y + height, width / 2 - 0.5, 0, Math.PI, false);
