@@ -9,7 +9,7 @@ class Paddle {
         this.x = canvas.width / 2 - (this.width / 2);
         this.y = canvas.height - 30 - 10;
         this.idx = 1;
-        this.blaster = true;
+        this.blaster = false;
         this.catch = true;
         this.blasterWithCatchCoords = {
             1: { x: 0, y: 0 },

@@ -197,8 +197,11 @@ class Game {
                 game.bricks.forEach((brick) => game.ball.collisionWithBrick(brick));
                 game.bricks.forEach((brick, i) => {
                     if (brick.value <= 0) {
-                        let power = new PowerUp(brick.x, brick.y);
-                        game.powerUps.push(power);
+                        let rand = Math.floor(Math.random() * 100);
+                        if (rand <= 20) {
+                            let power = new PowerUp(brick.x, brick.y);
+                            game.powerUps.push(power);
+                        }
                         game.bricks.splice(i, 1);
                     }
                 });
