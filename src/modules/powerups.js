@@ -32,6 +32,13 @@ class PowerUp {
             switch (this.powerUp) {
                 case 'blaster':
                     paddle.blaster = true;
+                    if (paddle.blasterId) {
+                        window.clearTimeout(paddle.blasterId);
+                    }
+                    paddle.blasterId = setTimeout(() => {
+                        paddle.blaster = false;
+                        paddle.blasterId = null;
+                    }, 10000);
                     return true;
                 default:
                     break;
