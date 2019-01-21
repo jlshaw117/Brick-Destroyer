@@ -4,18 +4,20 @@ class Bullet {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.width = 10;
+        this.width = 5;
         this.height = 15;
-        this.speed = -1;
+        this.speed = -3;
     }
 
     draw(screen) {
-        screen.fillStyle = 'blue';
-        screen.fillRect(x, y, width, height);
-        screen.arc(x + (width / 2), y, width / 2 - 0.5, 0, Math.PI, true);
-        screen.arc(x + (width / 2), y + height, width / 2 - 0.5, 0, Math.PI, false);
+        screen.beginPath();
+        screen.fillStyle = 'rgb(84, 185, 38)';
+        screen.fillRect(this.x, this.y, this.width, this.height);
+        screen.arc(this.x + (this.width / 2), this.y, this.width / 2 - 0.5, 0, Math.PI, true);
+        screen.arc(this.x + (this.width / 2), this.y + this.height, this.width / 2 - 0.5, 0, Math.PI, false);
         screen.stroke();
         screen.fill();
+        screen.closePath();
     } 
 }
 
