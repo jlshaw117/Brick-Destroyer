@@ -36,6 +36,8 @@ class Game {
     nextLevel() {
         this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
         this.roundStart = false;
+        this.paddle.catch = true;
+        this.paddle.blaster = false;
         this.level += 1;
         this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.buildLevel();
@@ -65,6 +67,7 @@ class Game {
         let game = this;
         this.canvas.addEventListener('click', () => {
             if (!this.roundStart) {
+                this.paddle.catch = false;
                 this.roundStart = true;
                 this.ball.dy = -1;
             }
