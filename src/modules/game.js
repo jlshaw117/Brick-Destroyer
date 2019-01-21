@@ -155,7 +155,7 @@ class Game {
             }
 
             game.powerUps.forEach((power, i) => {
-                if (power.checkForCollision(game.paddle, game.canvas.height)) {
+                if (power.checkForCollision(game.paddle, game)) {
                     game.powerUps.splice(i, 1);
                 } else {
                     power.draw(game.screen);

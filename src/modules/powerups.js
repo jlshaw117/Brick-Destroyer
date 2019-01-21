@@ -6,7 +6,7 @@ class PowerUp {
         this.speed = 1;
         let powerUps = ['bigger', 'smaller', 'split', 'extra', 'blaster', 'catch'];
         let idx = Math.floor(Math.random() * 6);
-        this.powerUp = 'catch';
+        this.powerUp = 'extra';
         this.height = 31;
         this.width = 33;
         this.coords = {
@@ -19,7 +19,7 @@ class PowerUp {
         };
     }
 
-    checkForCollision(paddle, height) {
+    checkForCollision(paddle, game) {
         let pLeft = paddle.x;
         let pRight = paddle.x + paddle.width;
         let pTop = paddle.y;
@@ -43,10 +43,13 @@ class PowerUp {
                 case 'catch':
                     paddle.catch = true;
                     return true;
+                case 'extra':
+                    game.lives += 1;
+                    return true;
                 default:
                     break;
             }
-        } else if (top > height){
+        } else if (top > game.canvas.height){
             return true;
         } else {
             return false;
