@@ -126,6 +126,16 @@ class Game {
 
             game.screen.closePath();
             game.bullets.forEach((bullet, i) => {
+                game.bricks.forEach(brick => {
+                    if ((bullet.x + bullet.width) > brick.x &&
+                        bullet.x < brick.x + brick.edge &&
+                        bullet.y - (bullet.width / 2) < brick.y + brick.edge) {
+
+                            game.bullets.splice(i, 1);
+                            brick.value -= 1;
+                            game.score += 1;
+                    }
+                });
                 bullet.draw(game.screen);
                 bullet.y += bullet.speed;
             });
