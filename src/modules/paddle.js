@@ -10,15 +10,19 @@ class Paddle {
         this.idx = 1;
         this.blaster = false;
         this.catch = true;
-        this.blasterCoords = {
-            0: { x: 75, y: 0 },
+        this.blasterWithCatchCoords = {
             1: { x: 0, y: 0 },
             2: { x: 0, y: 30 },
             3: { x: 0, y: 60 },
             4: { x: 0, y: 90 }
         };
+        this.blasterCoords = {
+            1: { x: 75, y: 0 },
+            2: { x: 75, y: 30 },
+            3: { x: 75, y: 60 },
+            4: { x: 75, y: 90 }
+        }
         this.catchCoords = {
-            0: { x: 150, y: 0 },
             1: { x: 150, y: 0 },
             2: { x: 150, y: 26 },
             3: { x: 150, y: 52 },
@@ -40,11 +44,14 @@ class Paddle {
             this.idx = 1;
         }
         const img = document.getElementById('paddle-sprites');
-        if (this.catch) {
+        if (this.catch && this.blaster) {
+            screen.drawImage(img, this.blasterWithCatchCoords[Math.floor(this.idx)].x, this.blasterWithCatchCoords[Math.floor(this.idx)].y, 75, 26, this.x, this.y - 15, this.width, this.height + 15);
+        } else if (this.blaster) {
+            screen.drawImage(img, this.blasterCoords[Math.floor(this.idx)].x, this.blasterCoords[Math.floor(this.idx)].y, 75, 26, this.x, this.y - 15, this.width, this.height + 15);
+        } else if (this.catch) {
             screen.drawImage(img, this.catchCoords[Math.floor(this.idx)].x, this.catchCoords[Math.floor(this.idx)].y, 75, 26, this.x, this.y - 11, this.width, this.height + 11);
         } else {
             screen.drawImage(img, this.plainCoords[Math.floor(this.idx)].x, this.plainCoords[Math.floor(this.idx)].y, 75, 15, this.x, this.y, this.width, this.height);
-
         }
 
         // screen.drawImage(img, 0, this.coords[Math.floor(this.idx)], 75, 30, this.x, this.y, this.width, this.height);
