@@ -69,9 +69,13 @@ class Ball {
         if (this.y + (this.dy * this.speed) > paddle.y - this.radius && 
             this.x > paddle.x && 
             this.x < paddle.x + paddle.width) {
-
+            if (paddle.catch) {
+                this.dy = 0;
+                this.game.roundStart = false;
+            } else {
+                this.dy = -this.dy;
+            }
             this.speed += 0.2;
-            this.dy = -this.dy;
             this.calculateTraj(paddle);
         }
     }
