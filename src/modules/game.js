@@ -125,7 +125,6 @@ class Game {
                 game.screen.font = '30px sans-serif';
                 game.screen.fillStyle = 'white';
                 game.screen.fillText('Move mouse to control paddle', game.canvas.width / 2, 200);
-                game.screen.fillText('Click to launch ball', game.canvas.width / 2, 300);
                 game.screen.closePath();
             }
             if (game.bricks.length === 0) {
