@@ -12,9 +12,9 @@ class Bullet {
     draw(screen) {
         screen.beginPath();
         screen.fillStyle = 'rgb(84, 185, 38)';
-        screen.fillRect(this.x, this.y, this.width, this.height);
-        screen.arc(this.x + (this.width / 2), this.y, this.width / 2 - 0.5, 0, Math.PI, true);
-        screen.arc(this.x + (this.width / 2), this.y + this.height, this.width / 2 - 0.5, 0, Math.PI, false);
+        screen.fillRect(this.x + 3, this.y, this.width, this.height);
+        screen.arc(this.x + 3 + (this.width / 2), this.y, this.width / 2 - 0.5, 0, Math.PI, true);
+        screen.arc(this.x + 3 + (this.width / 2), this.y + this.height, this.width / 2 - 0.5, 0, Math.PI, false);
         screen.stroke();
         screen.fill();
         screen.closePath();

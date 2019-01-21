@@ -65,6 +65,8 @@ class Game {
         this.level = 0;
         this.levels = levels;
         this.currentLevel = tutorial;
+        this.powerUps = [];
+        this.bullets = [];
         this.buildLevel();
     }
 
@@ -79,7 +81,7 @@ class Game {
             }
             if (this.paddle.blaster) {
                 this.bullets.push(new Bullet(this.paddle.x, this.paddle.y));
-                this.bullets.push(new Bullet(this.paddle.x + this.paddle.width - 5, this.paddle.y));
+                this.bullets.push(new Bullet(this.paddle.x + this.paddle.width - 12, this.paddle.y));
             }
         });
 
@@ -123,9 +125,13 @@ class Game {
             }
 
             game.screen.closePath();
+            game.bullets.forEach((bullet, i) => {
+                bullet.draw(game.screen);
+                bullet.y += bullet.speed;
+            });
+            game.ball.draw(game.screen);
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
-            game.ball.draw(game.screen);
             if (game.level === 0) {
                 game.screen.beginPath();
                 game.screen.textAlign = 'center';
@@ -147,10 +153,7 @@ class Game {
                 }
             });
 
-            game.bullets.forEach((bullet, i) => {
-                bullet.draw(game.screen);
-                bullet.y += bullet.speed;
-            });
+            
             
             if (game.roundStart) {
                 
