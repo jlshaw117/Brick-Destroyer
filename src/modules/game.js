@@ -3,6 +3,7 @@ import Ball from "./ball";
 import {levels, tutorial} from './levels';
 import Brick from "./brick";
 import PowerUp from './powerups';
+import Bullet from "./bullet";
 
 class Game {
 
@@ -22,6 +23,7 @@ class Game {
         this.levels = levels;
         this.currentLevel = tutorial;
         this.powerUps = [];
+        this.bullets = [];
     }
 
     buildLevel() {
@@ -49,6 +51,7 @@ class Game {
         this.ball.x = this.paddle.x + (this.paddle.width / 2);
         this.ball.y = this.paddle.y - this.ball.radius;
         this.powerUps = [];
+        this.bullets = [];
     }
 
     resetGame() {
@@ -73,6 +76,10 @@ class Game {
                 this.paddle.catch = false;
                 this.roundStart = true;
                 this.ball.dy = -1;
+            }
+            if (this.paddle.blaster) {
+                this.bullets.push(new Bullet(this.paddle.x, this.paddle.y));
+                this.bullets.push(new Bullet(this.paddle.x + this.paddle.width - 5, this.paddle.y));
             }
         });
 
@@ -138,6 +145,11 @@ class Game {
                     power.draw(game.screen);
                     power.y += power.speed;
                 }
+            });
+
+            game.bullets.forEach((bullet, i) => {
+                bullet.draw(game.screen);
+                bullet.y += bullet.speed;
             });
             
             if (game.roundStart) {
