@@ -5,7 +5,7 @@ class Paddle {
     constructor(canvas, height, width) {
         this.blasterId = null;
         this.height = 15;
-        this.width = 75;
+        this.width = 100;
         this.x = canvas.width / 2 - (this.width / 2);
         this.y = canvas.height - 30 - 10;
         this.idx = 1;
