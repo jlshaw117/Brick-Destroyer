@@ -17,7 +17,8 @@ class Game {
         this.canvas = document.getElementById('screen');
         this.screen = this.canvas.getContext('2d');
         this.paddle = new Paddle(this.canvas, 10, 100);
-        this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
+        this.balls = [];
+        this.balls.push(new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2)));
         this.bricks = [];
         this.level = 0;
         this.levels = levels;
@@ -38,7 +39,8 @@ class Game {
     }
 
     nextLevel() {
-        this.ball = new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2));
+        this.balls = [];
+        this.balls.push(new Ball(this, 15 / 2, this.paddle.x + (this.paddle.width / 2), this.paddle.y - (15 / 2)));
         this.roundStart = false;
         this.paddle.catch = true;
         this.paddle.blaster = false;
@@ -47,10 +49,10 @@ class Game {
         this.currentLevel = this.levels[(this.level - 1) % this.levels.length];
         this.buildLevel();
         this.difficulty += 0.2;
-        this.ball.dx = 0;
-        this.ball.dy = 0;
-        this.ball.x = this.paddle.x + (this.paddle.width / 2);
-        this.ball.y = this.paddle.y - this.ball.radius;
+        this.balls[0].dx = 0;
+        this.balls[0].dy = 0;
+        this.balls[0].x = this.paddle.x + (this.paddle.width / 2);
+        this.balls[0].y = this.paddle.y - this.balls[0].radius;
         this.powerUps = [];
         this.bullets = [];
     }
@@ -60,8 +62,9 @@ class Game {
         this.difficulty = 1;
         this.roundStart = false;
         this.score = 0;
+        this.balls = [];
         this.paddle = new Paddle(this.canvas, 10, 100);
-        this.ball = new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2));
+        this.balls.push(new Ball(this, 15 / 2, this.canvas.width / 2, this.paddle.y - (15 / 2)));
         this.bricks = [];
         this.level = 0;
         this.levels = levels;
@@ -78,7 +81,7 @@ class Game {
             if (!this.roundStart) {
                 this.paddle.catch = false;
                 this.roundStart = true;
-                this.ball.dy = -1;
+                this.balls[0].dy = -1;
             }
             if (this.paddle.blaster) {
                 this.bullets.push(new Bullet(this.paddle.x, this.paddle.y));
@@ -90,7 +93,7 @@ class Game {
             let mousePos = calculateMousePos(e);
             this.paddle.x = mousePos.x - (this.paddle.width / 2);
             if (this.roundStart === false) {
-                this.ball.x = mousePos.x;
+                this.balls[0].x = mousePos.x;
             }
         });
 
@@ -140,7 +143,7 @@ class Game {
                 bullet.draw(game.screen);
                 bullet.y += bullet.speed;
             });
-            game.ball.draw(game.screen);
+            game.balls.forEach(ball => ball.draw(game.screen));
             game.paddle.draw(game.screen);
             game.bricks.forEach((brick) => brick.draw(game.screen));
             if (game.level === 0) {
@@ -168,10 +171,26 @@ class Game {
             
             if (game.roundStart) {
                 
-                game.ball.collisionWithWall(game.canvas);
-                game.ball.collisionWithTop();
-                game.ball.collisionWithPaddle(game.paddle);
-                game.ball.collisionWithGround(game.canvas);
+                game.balls.forEach((ball, i) =>{
+                    ball.collisionWithWall(game.canvas);
+                    ball.collisionWithTop();
+                    ball.collisionWithPaddle(game.paddle);
+                    if (ball.collisionWithGround(game.canvas)) {
+                        game.balls.splice(i, 1);
+                    }
+                });
+                if (game.balls.length === 0) {
+                    game.lives -= 1;
+                    if (game.lives > 0) {
+                        game.balls.push(new Ball(game, 15 / 2, game.paddle.x + game.paddle.width / 2, game.paddle.y - (15 / 2)));
+                        game.roundStart = false;
+                        game.paddle.catch = true;
+                    }
+                }
+                // game.ball.collisionWithWall(game.canvas);
+                // game.ball.collisionWithTop();
+                // game.ball.collisionWithPaddle(game.paddle);
+                // game.ball.collisionWithGround(game.canvas);
                 if (game.lives === 0){
                     game.canvas.setAttribute("style", "display: none;");
                     game.gameOver.width = game.gameOver.width;
@@ -195,7 +214,10 @@ class Game {
                     });
 
                 }
-                game.bricks.forEach((brick) => game.ball.collisionWithBrick(brick));
+                game.bricks.forEach((brick) => {
+                    game.balls.forEach(ball => ball.collisionWithBrick(brick));
+                    // game.ball.collisionWithBrick(brick);
+                });
                 game.bricks.forEach((brick, i) => {
                     if (brick.value <= 0) {
                         let rand = Math.floor(Math.random() * 100);
@@ -207,8 +229,12 @@ class Game {
                     }
                 });
 
-                game.ball.x += game.ball.dx * game.ball.speed;
-                game.ball.y += game.ball.dy * game.ball.speed;
+                game.balls.forEach(ball => {
+                    ball.x += ball.dx * ball.speed;
+                    ball.y += ball.dy * ball.speed;
+                });
+                // game.ball.x += game.ball.dx * game.ball.speed;
+                // game.ball.y += game.ball.dy * game.ball.speed;
             }
 
             id = requestAnimationFrame(draw);

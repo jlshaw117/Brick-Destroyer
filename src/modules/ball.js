@@ -82,17 +82,20 @@ class Ball {
 
     collisionWithGround(canvas) {
         if (this.y + (this.dy * this.speed) > canvas.height - this.radius) {
-            if (this.game.lives > 0) {
-                this.game.lives -= 1;
-                this.game.roundStart = false;
-                this.y = this.game.paddle.y - this.radius;
-                this.x = this.game.paddle.x + this.game.paddle.width / 2;
-                this.dy = -this.dy;
-                this.dx = 0;
-                this.speed = this.defaultSpeed;
-                this.game.paddle.catch = true;
-                this.game.paddle.reset();
-            }
+            return true;
+            // if (this.game.lives > 0) {
+            //     this.game.lives -= 1;
+            //     this.game.roundStart = false;
+            //     this.y = this.game.paddle.y - this.radius;
+            //     this.x = this.game.paddle.x + this.game.paddle.width / 2;
+            //     this.dy = -this.dy;
+            //     this.dx = 0;
+            //     this.speed = this.defaultSpeed;
+            //     this.game.paddle.catch = true;
+            //     this.game.paddle.reset();
+            // }
+        } else {
+            return false;
         }
     }
 
