@@ -37,12 +37,6 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
             });
 ```
 
-### Levels
-
-Space Invaders         |  Blinky                |   Question Mark Box   | Attari
-:-------------------------:|:-------------------------:|:-------------------:|:-----------:
-![](./assets/level2.png)  |  ![](./assets/level3.png)  | ![](./assets/level4.png) | ![](./assets/level5.png)
-
 * Vanilla javascript
     * Used for gamelogic
 * webpack
