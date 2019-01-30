@@ -8,14 +8,6 @@ Brick Destroyer is a clone of the classic arcade game breakout. Players can cont
 
 Every time the ball hits a brick the brick will come closer to being destroyed (it will take from 1 to 3 times to destroy a brick). Upon hitting the paddle the speed will increment slightly, increasing the difficulty the longer the level goes on. If the player misses the ball the number of lives will decrement by 1 and the ball will reset. If the player clears all bricks in the level they move on to the next level and the dificulty increases (increase starting ball speed).
 
-## Functionality and MVP Features
-
-* There are 5 levels to cycle through
-* Bricks will be generated from a predesigned matrix
-* Players use the mouse to move the paddle left and right
-* The trajectory of the ball changes based on where it hits the paddle
-* speed increases on paddle hit also starting speed increases every level
-* Tracks score, current level, and lives
 
 ## Code
 
@@ -44,12 +36,6 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
                 }
             });
 ```
-
-## Wire Frame
-
-### Splash Page Layout
-
-<img src='./assets/home_page.png' width='500' />
 
 ### Levels
 
@@ -87,6 +73,6 @@ Space Invaders         |  Blinky                |   Question Mark Box   | Attari
 
 #### Tue 01/14/19
 
-- [ ] Work on level progression
-- [ ] Work on starting a new game after loss
-- [ ] Finuishing touches
+- [x] Work on level progression
+- [x] Work on starting a new game after loss
+- [x] Finuishing touches
