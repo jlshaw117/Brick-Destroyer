@@ -2,6 +2,7 @@
 
 [Live](https://jlshaw117.github.io/Brick-Destroyer/)
 
+![Brick Destroyer](assets/Screen_Shot.png)
 ## Overview
 
 Brick Destroyer is a clone of the classic arcade game breakout. Players can control a paddle along the bottom of the screen with their mouse. They use the paddle to deflect the ball around a level to break bricks.
@@ -43,30 +44,3 @@ Every time the ball hits a brick the brick will come closer to being destroyed (
     * bundle files
 * Canvas
     * Used for rendering and animation
-
-## Implementation Timeline
-
-#### Sat 01/12/19
-
-- [x] Reasearch canvas
-- [x] Render paddle and ball
-
-#### Sun 01/12/19
-
-- [x] Animate Ball
-- [x] Implement collision with walls
-- [x] Have paddle track mouse
-- [x] Implement collision with paddle
-
-#### Mon 01/13/19
-
-- [x] Add bricks to level
-- [x] Let ball change trajectory based on paddle position
-- [x] Detect brick collision
-- [x] Reset ball on Miss
-
-#### Tue 01/14/19
-
-- [x] Work on level progression
-- [x] Work on starting a new game after loss
-- [x] Finuishing touches
